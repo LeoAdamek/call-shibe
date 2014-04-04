@@ -1,0 +1,5 @@
+# Gitignore file
+
+# Ignore gems in vendor
+vendor/
+Gemfile.lock
