@@ -1,4 +1,4 @@
-module Konfrence
+module CallShibe
   ##
   # The "Ping" Module provides a sigle '/ping' method.
   # This method can be used to check that the app server is still alive.

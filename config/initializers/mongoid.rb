@@ -1,12 +1,12 @@
 ##
-# Connect Konfrence to MongoDB
+# Connect CallShibe to MongoDB
 # (MongoDB is cool!)
 ##
 
 require 'mongoid'
 require 'logger'
 
-Mongoid.load! File.join(ENV['KONFRENCE_ROOT'], 'config' , 'mongoid.yml')
+Mongoid.load! File.join(ENV['SHIBE_ROOT'], 'config' , 'mongoid.yml')
 
 if ENV['RACK_ENV'] == 'development'
   Mongoid.logger = Logger.new($stdout)
@@ -17,7 +17,7 @@ if ENV['RACK_ENV'] == 'development'
 end
 
 # Load the models
-Dir[ File.join(ENV['KONFRENCE_ROOT'] , 'app/models/*.rb') ].each do |model|
+Dir[ File.join(ENV['SHIBE_ROOT'] , 'app/models/*.rb') ].each do |model|
   puts model
   require model
 end

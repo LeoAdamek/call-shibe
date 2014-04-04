@@ -1,4 +1,4 @@
-module Konfrence
+module CallShibe
   class TwilioHooks < Grape::API
 
     # Twilio Speaks XML. (TwiML)

@@ -1,7 +1,7 @@
 
-module Konfrence
+module CallShibe
   ##
-  # Callers interface for the Konfrence API
+  # Callers interface for the CallShibe API
   #
   class Callers < Grape::API
 
@@ -9,7 +9,7 @@ module Konfrence
 
       desc 'Get the callers list'
       get do
-        ::Konfrence::Models::Caller.all
+        ::CallShibe::Models::Caller.all
       end
 
       desc 'Create a new caller'
@@ -25,7 +25,7 @@ module Konfrence
           auto_join_room: params[:auto_join_room]
         }
 
-        ::Konfrence::Models::Caller.create(data)
+        ::CallShibe::Models::Caller.create(data)
       end
 
       desc 'Get a caller'
@@ -33,7 +33,7 @@ module Konfrence
         requires :id , type: String
       end
       get ':id' do
-        ::Konfrence::Models::Caller.find(:id => params[:id])
+        ::CallShibe::Models::Caller.find(:id => params[:id])
       end
 
     end

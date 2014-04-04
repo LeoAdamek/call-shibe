@@ -1,4 +1,4 @@
-module Konfrence
+module CallShibe
   module Models
     class Caller
       include Mongoid::Document

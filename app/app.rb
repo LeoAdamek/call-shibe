@@ -1,8 +1,8 @@
-module Konfrence
+module CallShibe
   ##
-  # Konference Application
+  # CallShibe Application
   #
-  # Initializes the Rack application for Konference.
+  # Initializes the Rack application for CallShibe.
   # In here we can hook up stuff like a front-end UI too.
   class Application
    

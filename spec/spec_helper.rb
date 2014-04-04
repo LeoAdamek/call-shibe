@@ -13,6 +13,6 @@ end
 
 require 'capybara/rspec'
 Capybara.configure do |config|
-  config.app = Konfrence::Application.new
+  config.app = CallShibe::Application.new
   config.server_prot = 9293
 end

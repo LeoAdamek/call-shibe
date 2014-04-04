@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Konfrence::API do
+describe CallShibe::API do
   include Rack::Test::Methods
 
   def app
-    Konfrence::API
+    CallShibe::API
   end
 
   it "Takes a ping for /api/ping" do

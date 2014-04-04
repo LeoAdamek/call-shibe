@@ -1,15 +1,15 @@
-module Konfrence
+module CallShibe
   class API < Grape::API
 
     prefix 'api'
     format :json
 
-    mount ::Konfrence::Callers
+    mount ::CallShibe::Callers
 
-    mount ::Konfrence::Status
-    mount ::Konfrence::Ping
+    mount ::CallShibe::Status
+    mount ::CallShibe::Ping
 
-    mount ::Konfrence::TwilioHooks
+    mount ::CallShibe::TwilioHooks
 
     
 

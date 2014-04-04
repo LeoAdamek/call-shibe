@@ -1,4 +1,4 @@
-module Konfrence
+module CallShibe
   class Call
     include Mongoid::Document
 
