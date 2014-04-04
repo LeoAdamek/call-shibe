@@ -6,5 +6,5 @@ end
 
 guard 'rack' do
   watch('Gemfile.lock')
-  watch(%{^(config|app)/.*})
+  watch(%r{^(config|api).*/*\.rb})
 end

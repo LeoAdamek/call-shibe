@@ -7,7 +7,6 @@ source 'https://rubygems.org/'
 
 gem 'rack'
 gem 'grape'
-gem 'gape-entity'
 gem 'twilio-ruby', github: 'LeoAdamek/twilio-ruby'
 
 group :development do
@@ -19,10 +18,12 @@ group :development do
   gem 'rubocop'
 
   gem 'pry'
+  gem 'rake'
 end
 
 
 group :test do
   gem 'rspec'
   gem 'rack-test'
+  gem 'capybara'
 end
