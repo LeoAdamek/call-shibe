@@ -7,7 +7,8 @@ source 'https://rubygems.org/'
 
 gem 'rack'
 gem 'grape'
-gem 'twilio-ruby', github: 'LeoAdamek/twilio-ruby'
+
+gem 'mongoid' , '~>3.1.6'
 
 group :development do
   gem 'guard'
