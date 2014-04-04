@@ -5,13 +5,13 @@ module Konfrence
     format :xml
     prefix '/twilio'
 
-    desc 'Twilio API Hook for an incoming call being recieved'
-    post 'call-recieved' do
+    desc 'Twilio API Hook for an incoming call being received'
+    post 'call-received' do
       
     end
 
-    desc 'Twilio API Hook for a call ending'
-    post 'call-ended' do
+    desc 'Twilio API Hook for call status'
+    post 'call-status' do
       
     end
 
