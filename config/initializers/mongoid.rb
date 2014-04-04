@@ -6,6 +6,7 @@
 require 'mongoid'
 require 'logger'
 
+Mongoid.raise_not_found_error = false
 Mongoid.load! File.join(ENV['SHIBE_ROOT'], 'config' , 'mongoid.yml')
 
 if ENV['RACK_ENV'] == 'development'
