@@ -9,6 +9,7 @@ gem 'rack'
 gem 'grape'
 
 gem 'mongoid' , '~>3.1.6'
+gem 'twilio-ruby' , github: 'LeoAdamek/twilio-ruby'
 
 group :development do
   gem 'guard'

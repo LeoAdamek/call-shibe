@@ -28,7 +28,7 @@ module Konfrence
 
       # :have_twilio
       # Check that Twilio is working
-      status[:have_twilio] = true
+      status[:have_twilio] = $twilio.is_a?(Twilio::REST::Client)
 
       # Return status hash
       status
