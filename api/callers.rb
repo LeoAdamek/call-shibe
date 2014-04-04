@@ -9,7 +9,7 @@ module CallShibe
 
       desc 'Get the callers list'
       get do
-        ::CallShibe::Models::Caller.all
+        ::Caller.all
       end
 
       desc 'Create a new caller'
@@ -25,7 +25,9 @@ module CallShibe
           auto_join_room: params[:auto_join_room]
         }
 
-        ::CallShibe::Models::Caller.create(data)
+        @caller = ::Caller.new (data)
+        
+        {data: @caller, saved: @caller.save}
       end
 
       desc 'Get a caller'
@@ -33,7 +35,7 @@ module CallShibe
         requires :id , type: String
       end
       get ':id' do
-        ::CallShibe::Models::Caller.find(:id => params[:id])
+        ::Caller.find(params[:id])
       end
 
     end

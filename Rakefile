@@ -24,8 +24,8 @@ task :environment do
 end
 
 task :routes => :environment do
-  Konfrence::API.routes.each do |route|
-    p route
+  CallShibe::API.routes.each do |route|
+    p route.to_s
   end
 end
 
