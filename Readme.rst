@@ -53,26 +53,74 @@ Scheduled Conferences
 #. Clone this repository
 #. Run `bundle install`
 #. Set up your MongoDB configuration in ``config/mongoid.yml``
-#. Set up your Twilio  account credentials in ``config/twilio.yml``
-#. Run the application using your favourite Rack server
+#. Set up your Twilio Credentials, using either ``config/twilio.yml`` or setting ``TWILIO_SID`` and ``TWILIO_TOKEN`` environment variables.
+#. Set your environment with the ``RACK_ENV`` environment variable.
+#. Run the application with your favourite Rack server, or Passenger.
 
-Don't forget to point Twilio at the following paths:
+Don't forget to point Twilio at the following paths to connect it.
 
-.. note::
-   It's probably best to set up Call Shibe as a TwiML app, for easier configuration.
+Twilio Configuration
+^^^^^^^^^^^^^^^^^^^^
+
+It's probably best to set up Call Shibe as a TwiML app, for easier configuration.
 
 Request URL
-    ``/api/twilio/call-received``
+    ``GET /api/twilio/call-received``
 
 Status Callback URL
-    ``/api/twilio/call-status``
+    ``GET /api/twilio/call-status``
 
 SMS Request URL
-    ``/api/twilio/call-status``
+    ``GET /api/twilio/call-status``
 
+
+Creating a Known Caller
+^^^^^^^^^^^^^^^^^^^^^^^
+
+To create a new caller, just PUT them to ``/api/callers``.
+
+Here's an example ``curl`` command to do it.
+
+   curl -XPUT -dname="My Caller" -dphone_number="+441111222333" http://localhost/api/callers
+
+It's important to set up the caller using an internationalized phone number, otherwise it won't be recognized when they call.
+If you want to have this caller automatically connected to a room, just supply the ``auto_join_room`` option.
+
+Here's a summary of options
+
+``name`` *required*
+   The name of the caller, this will be used to greet them.
+
+``phone_number`` *required* *unique*
+   The callers phone number, this will be used to identify them.
+
+``auto_join_room``
+   The room this caller should automatically join when they connect.
+
+
+Creating a Joinable Room
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you want to add a room which other callers can join, you can use the ``rooms`` API.
+A Room takes the following options:
+
+``name`` *required* *unique*
+    The name of the room. *must be unique*
+
+``join_code``
+    A four digit code needed to join the room, if this is not supplied then the room can only be automatically joined.
+    *must be unique or null*
+
+
+---------------
+ API Reference
+---------------
+
+A full API reference is available via Swagger.
 
 -------------------------------
  Contributing / Reporting Bugs
 -------------------------------
 
 Please report bugs to the Github issues page.
+Submit pull requests for changes and fixes.

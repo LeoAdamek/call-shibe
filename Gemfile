@@ -7,6 +7,7 @@ source 'https://rubygems.org/'
 
 gem 'rack'
 gem 'grape'
+gem 'grape-swagger'
 
 gem 'mongoid' , '~>3.1.6'
 gem 'twilio-ruby' , github: 'LeoAdamek/twilio-ruby'

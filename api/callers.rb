@@ -32,10 +32,18 @@ module CallShibe
 
       desc 'Get a caller'
       params do
-        requires :id , type: String
+        requires :phone_number, type: String , desc: "The Caller's phone number"
       end
-      get ':id' do
-        ::Caller.find(params[:id])
+      get ':phone_number' do
+        ::Caller.find_by( :phone_number => params[:phone_number])
+      end
+
+      desc 'Update a caller'
+      params do
+        requires :phone_number, type: String, desc: "The caller's phone number"
+      end
+      post ':phone_number' do
+        {:success => true}
       end
 
     end

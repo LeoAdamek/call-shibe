@@ -14,6 +14,6 @@ module CallShibe
     mount ::CallShibe::TwilioHooks
 
     
-
+    add_swagger_documentation
   end
 end
