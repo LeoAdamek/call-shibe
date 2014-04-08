@@ -6,11 +6,16 @@ source 'https://rubygems.org/'
 
 
 gem 'rack'
+gem 'warden'
+
 gem 'grape'
 gem 'grape-swagger'
 
 gem 'mongoid' , '~>3.1.6'
 gem 'twilio-ruby' , github: 'LeoAdamek/twilio-ruby'
+
+# For Rake Tasks
+gem 'terminal-table'
 
 group :development do
   gem 'guard'

@@ -19,7 +19,6 @@ end
 
 # Load the models
 Dir[ File.join(ENV['SHIBE_ROOT'] , 'app/models/*.rb') ].each do |model|
-  puts model
   require model
 end
 

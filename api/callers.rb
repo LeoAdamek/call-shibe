@@ -9,6 +9,9 @@ module CallShibe
 
       desc 'Get the callers list'
       get do
+        
+        require_authentication!
+
         ::Caller.all
       end
 
@@ -19,6 +22,9 @@ module CallShibe
         optional :auto_join_room, type: String, desc: "Room for caller to auto-join"
       end
       put do
+
+        require_authentication!
+
         data = {
           # Replace an opening space with a + so they caller will match when they call.
           phone_number: params[:phone_number].sub(/^\s/, '+'),

@@ -20,7 +20,7 @@ module CallShibe
     # Passes through to the API
     def call(env)
       # Call the API
-      API.call(env)
+      API.call env
     end
 
   end
