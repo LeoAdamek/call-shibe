@@ -59,13 +59,22 @@ NOTE
       desc 'Update a caller'
       params do
         requires :phone_number, type: String, desc: "The caller's phone number"
+        optional :name , type: String , desc: "New name"
+        optional :auto_join_room , type: String, desc: "New Auto Join Room"
+        optional :new_phone_number, type: String, desc: "New Phone number for the caller"
       end
       post ':phone_number' do
         require_authentication!
 
         @caller = ::Caller.find_by(:phone_number => params[:phone_number])
+
+        error! "Caller not found" , 404 if @caller.nil?
         
-        error! "Not Implimented" , 404
+        @caller.name = params[:name] if params[:name]
+        @caller.auto_join_room = params[:auto_join_room] if params[:auto_join_room]
+
+        {:success => @caller.save}
+
       end
 
       desc 'Delete A Caller'
