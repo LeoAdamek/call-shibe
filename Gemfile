@@ -17,6 +17,9 @@ gem 'twilio-ruby' , github: 'LeoAdamek/twilio-ruby'
 # For Rake Tasks
 gem 'terminal-table'
 
+# Newrelic >= Love
+gem 'newrelic-grape'
+
 group :development do
   gem 'guard'
 
@@ -25,6 +28,7 @@ group :development do
 
   gem 'rubocop'
   gem 'better_errors'
+  gem 'ruby-prof'
 
   gem 'pry'
   gem 'rake'
