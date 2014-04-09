@@ -14,5 +14,5 @@ end
 require 'capybara/rspec'
 Capybara.configure do |config|
   config.app = CallShibe::Application.new
-  config.server_prot = 9293
+  config.server_port = 9293
 end

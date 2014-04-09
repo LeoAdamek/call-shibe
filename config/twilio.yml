@@ -1,3 +1,6 @@
-development:
+test_credentials: &test_credentials
   account: AC91638cf5d47d6039df2a5a7f0c5ae56e
   token: 6b2da959bc25f1833c0fd629461d8b49
+
+development: *test_credentials
+test: *test_credentials

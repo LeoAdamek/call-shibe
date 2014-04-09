@@ -95,6 +95,7 @@
        desc "Twilio Call-back for checking a conference code"
        params do
          requires "Digits", type: String, desc: "Entered Conference code"
+         requires "AccountSid" , type: String, desc: "Twilio Account Sid, must match configured account."
        end
        get 'conference-code' do
          @room = ::ConferenceRoom.find_by(:join_code => params["Digits"])
