@@ -74,6 +74,29 @@ SMS Request URL
     ``GET /api/twilio/call-status``
 
 
+Creating an API Access Token
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To use any API methods (with the notable exception of ``/api/ping`` and ``/api/status``, and ``/api/twilio/``, an API Token is required.
+For security reasons API Token management is not available via the API, and is provided by a set of Rake tasks.
+
+``rake user:add[:name]``
+    Create a user with the unique name ``:name``, which will be assigned an access token, and be automatically enabled.
+    It displays the generated access token.
+
+``rake user:list``
+    Displays a table of existing users, including name, access key, status and creation timestamp.
+
+``rake user:delete[:name]``
+    Delete a user ``:name`` -- This will permanently destory their access key.
+
+``rake user:disable[:name]``
+    Disables user ``:name`` -- This does not destory their access key and it can be re-enabled later
+
+``rake user:enable[:name]``
+    Enables the user ``:name`` -- Keeping the same acess key
+
+
 Creating a Known Caller
 ^^^^^^^^^^^^^^^^^^^^^^^
 
