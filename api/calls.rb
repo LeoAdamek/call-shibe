@@ -1,11 +1,12 @@
 module CallShibe
   class Calls < Grape::API
 
-    desc "Read-only API for Calls"
+    desc 'Read-only API for Calls'
     resource :calls do
 
-      desc "Get all Calls"
+      desc 'Get all Calls'
       get do
+        require_authentication!
         ::Call.all
       end
 
@@ -13,8 +14,9 @@ module CallShibe
       params do
         requires :phone_number, type: String, desc: "Phone number to get calls from"
       end
-      get ':phone_number' do
-        
+      get '/from/:phone_number' do
+        require_authentication!
+
         @caller = ::Caller.find_by(:phone_number => params[:phone_number])
         
         if @caller

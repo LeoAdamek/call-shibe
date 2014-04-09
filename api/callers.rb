@@ -44,6 +44,8 @@ module CallShibe
         requires :phone_number, type: String , desc: "The Caller's phone number"
       end
       get ':phone_number' do
+        require_authentication!
+
         ::Caller.find_by( :phone_number => params[:phone_number])
       end
 
@@ -52,9 +54,27 @@ module CallShibe
         requires :phone_number, type: String, desc: "The caller's phone number"
       end
       post ':phone_number' do
+        require_authentication!
+
         @caller = ::Caller.find_by(:phone_number => params[:phone_number])
         
         error! "Not Implimented" , 404
+      end
+
+      desc 'Delete A Caller'
+      params do
+        requires :phone_number, type: String, desc: 'Phone number of caller to delete'
+      end
+      delete ':phone_number' do
+        
+        require_authentication!
+
+        @caller = ::Caller.find_by(:phone_number => params[:phone_number])
+
+        { :phone_number => params[:phone_number],
+          :id => @caller.id,
+          :deleted => @caller.delete }
+
       end
 
     end
