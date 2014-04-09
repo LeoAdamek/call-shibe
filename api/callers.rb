@@ -15,13 +15,20 @@ module CallShibe
         ::Caller.all
       end
 
-      desc 'Create a new caller'
+      desc 'Create a new caller' , {
+        notes: <<-NOTE
+* The `:phone_number` field must be passed in [E.164 format](http://en.wikipedia.org/wiki/E.164)
+* The `:name` field does not need to be unique and it not used as an identifier, but must be spplied.
+* The `:auto_join_room` field, if spplied will be the name of the room this caller will be automatically forwarded to
+  If not supplied the caller will be prompted for a code.
+NOTE
+      }
       params do
         requires :phone_number  , type: String, desc: "Caller Phone Number"
         requires :name          , type: String, desc: "Caller Name"
         optional :auto_join_room, type: String, desc: "Room for caller to auto-join"
       end
-      put do
+      put  do
 
         require_authentication!
 
