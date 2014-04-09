@@ -12,21 +12,27 @@ module CallShibe
       manager.failure_app = self
     end
 
+    ## If in development, add better_errors
+    if ENV['RACK_ENV'] == 'development'
+      use BetterErrors::Middleware
+      BetterErrors.application_root = __dir__
+    end
+
 
     # Access Token Strategy
     Warden::Strategies.add(:access_token) do
       ## 
       # Check validity of access token
       def valid?
-        puts request.env["access_token"] || "Nothing :("
-        request.env["access_token"].is_a?(String)
+        request.params['access_token'].is_a?(String)
       end
 
       ##
       # Authenticate (if #valid? is true)
       def authenticate!
-        puts request.env.to_json
-        User.authenticate(request.env["access_token"]) ? fail!("Authentication Error") : success!(true)
+        @user = ::APIUser.authenticate(request.params['access_token'])
+        
+        @user ? true : false
       end
     end
 

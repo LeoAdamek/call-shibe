@@ -24,6 +24,7 @@ group :development do
   gem 'guard-bundler'
 
   gem 'rubocop'
+  gem 'better_errors'
 
   gem 'pry'
   gem 'rake'

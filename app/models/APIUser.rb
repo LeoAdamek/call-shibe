@@ -32,8 +32,7 @@ class APIUser
   def self.authenticate(access_token)
     user = find_by( :access_token => access_token , :is_enabled => true )
     
-    return user || false
-    
+    user || false
   end
   
 end
