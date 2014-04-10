@@ -10,6 +10,8 @@ class Call
   field :room_name , type: String
 
   field :call_status
+
+  field :created_at , type: Time , default: ->{ Time.now }
   
   belongs_to :caller
 end
