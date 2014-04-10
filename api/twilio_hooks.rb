@@ -105,7 +105,14 @@
              r.Say "Thank you, you are now being connected to the #{@room.name} conference"
              r.Pause 1
              r.Dial do |dailing|
-               dailing.Conference @room.name
+               dailing.Conference( {
+                                     beep: @room.options.beep,
+                                     record: @room.options.record,
+                                     maxParticipants: @room.options.max_participants,
+                                     trim: @room.options.trim_silence ? 'trim-silence' : 'do-not-trim',
+                                     waitURL: @room.options.wait_audio
+                                   } , @room.name )
+
              end
            end
          else
