@@ -4,6 +4,9 @@ class ConferenceRoom
   field :name , type: String
   field :join_code , type: String
 
+  embeds_one :room_options , class_name: "ConferenceRoomOptions"
+  
+
   index :name => 1
   index :join_code => 1
 end
