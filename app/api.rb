@@ -24,13 +24,13 @@ module CallShibe
       ## 
       # Check validity of access token
       def valid?
-        request.params['access_token'].is_a?(String)
+        env['HTTP_AUTHORIZATION'].is_a?(String)
       end
 
       ##
       # Authenticate (if #valid? is true)
       def authenticate!
-        @user = ::APIUser.authenticate(request.params['access_token'])
+        @user = ::APIUser.authenticate(request.env['HTTP_AUTHORIZATION'])
         
         @user ? true : false
       end
