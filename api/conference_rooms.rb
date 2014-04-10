@@ -14,13 +14,37 @@ module CallShibe
       params do
         requires :name , type: String, desc: "Room Name"
         requires :join_code , type: String, desc: "Joining Code"
+
+        optional :beep,
+          type: String,
+          desc: "Change Beep settings"
+
+        optional :wait_audio,
+          type: String, 
+          desc: "URL to audio file to play while waiting for start"
+
+        optional :max_participents,
+          type: Integer,
+          desc: "Maximum number of participants"
+        
+        optional :trim_silence,
+          type: Boolean,
+          desc: "Trim silence from audio files"
+
       end
       put do
         require_authentication!
 
         @room = ::ConferenceRoom.create(
                                         :name => params[:name],
-                                        :join_code => params[:join_code]
+                                        :join_code => params[:join_code],
+                                        :room_options => {
+                                          :beep => params[:beep],
+                                          :wait_audio => params[:wait_audio],
+                                          :record => params[:record],
+                                          :max_participents => params[:max_participents],
+                                          :trim_silence => params[:trim_silence]
+                                        }
                                         )
 
         {data: @room, saved: @room.save}
@@ -37,6 +61,18 @@ module CallShibe
         
         {:id => params[:id],
          :deleted => true}
+      end
+
+
+
+      desc 'Get the calls for a room'
+      params do
+        requires :name, type: String, desc: "Room Name"
+      end
+      get '/:name/calls' do
+        require_authentication!
+
+        ::Call.find_by(:room_name => params[:id])
       end
 
     end
