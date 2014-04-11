@@ -108,7 +108,7 @@
                dailing.Conference( {
                                      beep: @room.room_options.beep,
                                      record: @room.room_options.record,
-                                     maxParticipants: @room.room_options.max_participants,
+                                     maxParticipents: @room.room_options.max_participents,
                                      trim: @room.room_options.trim_silence ? 'trim-silence' : 'do-not-trim',
                                      waitURL: @room.room_options.wait_audio
                                    } , @room.name )
