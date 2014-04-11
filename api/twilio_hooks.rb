@@ -106,11 +106,11 @@
              r.Pause 1
              r.Dial do |dailing|
                dailing.Conference( {
-                                     beep: @room.options.beep,
-                                     record: @room.options.record,
-                                     maxParticipants: @room.options.max_participants,
-                                     trim: @room.options.trim_silence ? 'trim-silence' : 'do-not-trim',
-                                     waitURL: @room.options.wait_audio
+                                     beep: @room.room_options.beep,
+                                     record: @room.room_options.record,
+                                     maxParticipants: @room.room_options.max_participants,
+                                     trim: @room.room_options.trim_silence ? 'trim-silence' : 'do-not-trim',
+                                     waitURL: @room.room_options.wait_audio
                                    } , @room.name )
 
              end
