@@ -96,6 +96,7 @@ For security reasons API Token management is not available via the API, and is p
 ``rake user:enable[:name]``
     Enables the user ``:name`` -- Keeping the same acess key
 
+For any API calls which require authentication, supply the API token in the ``Authentication`` HTTP header.
 
 Creating a Known Caller
 ^^^^^^^^^^^^^^^^^^^^^^^

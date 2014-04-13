@@ -22,8 +22,8 @@ module CallShibe
       # :have_life (always returns true)
       status[:have_life] = true
 
-      # :have_db
-      # Checks Database connectivity
+
+      # :have_db isn't really working yet...
       status[:have_db] = true
 
       # :have_twilio
