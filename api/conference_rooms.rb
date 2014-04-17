@@ -33,7 +33,7 @@ module CallShibe
 
         optional :record,
           type: Boolean,
-        description: "record calls to this room"
+          desc: "record calls to this room"
 
       end
       put do
