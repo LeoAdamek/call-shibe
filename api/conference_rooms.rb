@@ -31,6 +31,10 @@ module CallShibe
           type: Boolean,
           desc: "Trim silence from audio files"
 
+        optional :record,
+          type: Boolean,
+        description: "record calls to this room"
+
       end
       put do
         require_authentication!
