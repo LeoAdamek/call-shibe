@@ -12,7 +12,8 @@ require_relative 'twilio_conference_code'
 
        helpers do
          def validate_twilio_account!
-           if params['AccountSid'] != $twilio.account_sid
+           return true if ::CallShibe.environment.in?('development','test')
+           if params['AccountSid'] != ::CallShibe.twilio.account_sid
              error! 'Invalid Account Sid', 403
            end
          end

@@ -1,6 +1,6 @@
 development:
   sessions:
     default:
-      database: konfrence_development
+      database: call_shibe_development
       hosts:
         - localhost:27017

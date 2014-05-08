@@ -4,9 +4,17 @@ module CallShibe
 
       desc 'Twilio API Hook for an incoming call being received'
       params do
-        requires 'From' , type: String, desc: 'Caller\'s phone number'
-        requires 'CallSid' , type:String , desc: 'Twilio Call Sid'
-        requires 'AccountSid' , type:String, desc: 'Twilio Account Sid, Must match the configured account.'
+        requires 'From',
+          type: String,
+          desc: 'Caller\'s phone number'
+
+        requires 'CallSid',
+          type:String,
+          desc: 'Twilio Call Sid'
+
+        requires 'AccountSid',
+          type:String,
+          desc: 'Twilio Account Sid, Must match the configured account.'
       end
       get 'call-received' do
 

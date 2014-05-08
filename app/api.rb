@@ -43,6 +43,9 @@ module CallShibe
       # Authentication helper
       # Applied to all methods which require authentication
       def require_authentication!
+
+        return true if ::CallShibe.environment == 'development'
+
         env['warden'].authenticate(:access_token)
         error! "Invalid access_token" , 401 unless env['warden'].user
       end
