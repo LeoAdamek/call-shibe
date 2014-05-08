@@ -19,29 +19,53 @@ module CallShibe
                            )
                              
           
-          @room = ::ConferenceRoom.find_room_for_call(join_code: params['Digits'], inbound_number: params['To'])
+          @room = ::ConferenceRoom.find_room_for_call(join_code: params['Digits'],
+                                                      inbound_number: params['To'])
           
           if @room
-            response = Twilio::TwiML::Response.new do |r|
-              r.Say "Thank you, you are now being connected to the #{@room.name} conference"
-              r.Pause 1
-              r.Dial do |dailing|
-                dailing.Conference(@room.join_options, @room.name)
-              end
-            end
+            response = get_join_response @room
           else
-            response = Twilio::TwiML::Response.new do |r|
-              r.Say 'Sorry, but the code you have entered is invalid. Goodbye'
-              r.Hangup
-            end
-
+            response = get_reject_response
           end
-
           
           response
 
         end
       end
+      
+      ##
+      # Get TwiML response for joining `room`.
+      #
+      # @param [ConferenceRoom] room
+      def get_join_response(room)
+        logger.info "Call joined room: #{room.name}"
+
+        response = TwiML::Response.new do |r|
+          r.Say "Joining #{room.name} conference"
+          r.Dial do |dial|
+            dial.Conference room.join_options , room.name
+          end
+        end
+
+        response
+      end
+
+      ##
+      # Get TwiML response for rejecting a code
+      #
+      #
+      def get_reject_response
+        logger.info "Join code rejected"
+        
+        response = TwiML::Response.new do |r|
+          r.Say "The conference code entered is invalid. Goodbye"
+          r.Pause 1
+          r.Hangup
+        end
+
+        response
+      end
+
     end
   end
 end

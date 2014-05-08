@@ -12,8 +12,19 @@ module CallShibe
 
       desc 'Create a new conference room'
       params do
-        requires :name , type: String, desc: "Room Name"
-        requires :join_code , type: String, desc: "Joining Code"
+        requires :name,
+          type: String,
+          desc: "Room Name"
+
+        requires :join_code,
+          type: String,
+          desc: "Joining Code"
+        
+        if ::CallShibe.config['conference_rooms']['multi_number']
+          requires :inbound_number, 
+            type: String, 
+            desc: "Number this call will come in to"
+        end
 
         optional :beep,
           type: String,
