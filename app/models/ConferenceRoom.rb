@@ -18,7 +18,7 @@ class ConferenceRoom
   # Find a conference rom by joining code, and inbound number if multi-number is enabled.
   #
   # @param fields [Hash] Fields to search by
-  def find_room_for_call(fields = {})
+  def self.find_room_for_call(fields = {})
 
     if ::CallShibe.config['conference_rooms']['multi_number']
       find_by(join_code: fields[:join_code], inbound_number: fields[:inbound_number])
