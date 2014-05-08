@@ -28,7 +28,7 @@ module CallShibe
 
       # :have_twilio
       # Check that Twilio is working
-      status[:have_twilio] = $twilio.is_a?(Twilio::REST::Client)
+      status[:have_twilio] = ::CallShibe.twilio.is_a?(Twilio::REST::Client)
 
       # Return status hash
       status

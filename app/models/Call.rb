@@ -14,5 +14,14 @@ class Call
   field :created_at , type: Time , default: ->{ Time.now }
   
   belongs_to :caller
+
+
+  def add_action(action_data = {})
+    action_data[:timestamp] = Time.now
+
+    [:actions] << action_data
+    
+    save
+  end
 end
 

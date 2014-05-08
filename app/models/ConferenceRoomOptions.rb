@@ -2,11 +2,11 @@ class ConferenceRoomOptions
 
   include Mongoid::Document
 
-  field :beep  , type: String  , default: true
+  field :beep  , type: String
 
   field :wait_audio , type: String
 
-  field :record , type: Boolean , default: false
+  field :record , type: Boolean
   field :max_participents , type: Integer
 
   field :trim_silence , type: Boolean

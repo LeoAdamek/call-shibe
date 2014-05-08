@@ -1,0 +1,62 @@
+##
+# Call Shibe Application Configuration
+#
+#
+
+##
+# Example Configuration object.
+# (Basically the defaults which can be overridden nicely for environments
+#
+template: &template
+
+  # Global Conference Room options & defaults
+  conference_rooms:
+    
+    # Enable Multi-number environment
+    # If enabled, the join code *and* incoming number are matched
+    # This allows join codes to be recycled across different inbound numbers
+    # If disabled, the inbound number is disabled, and join codes must be unique.
+    multi_number: true
+
+    # Default conference room options
+    default_options:
+      # Beep on join/leave
+      # Can be any of true, false on-join and on-leave
+      beep: true
+
+      # Record conferences.
+      record: false
+
+      # Trim silence from any recordings.
+      trim_silence: true
+
+      # Maximum users connected to a call
+      max_participents: 4
+
+      # URL for hold music
+      # Use null for default
+      wait_audio: null
+      
+
+  # Logging Options
+  logging:
+    # Log level, may be "debug" , "info", "warning" , "error", "crit" and "fatal"
+    level: INFO
+    
+    # File may be any path (relative to where the application is started)
+    # Or $STDOUT / $STDERR for stdout / stderr.
+    file: $STDOUT
+      
+    
+# Development environment.
+development:
+  <<: *template
+  logging:
+    level: DEBUG
+    file: $STDOUT
+
+test:
+  <<: *template
+  logging:
+    level: DEBUG
+    file: $STDOUT

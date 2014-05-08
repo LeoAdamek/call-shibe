@@ -4,6 +4,8 @@ module CallShibe
     prefix 'api'
     format :json
 
+    attr_reader :logger
+    @logger = Logger.new(::CallShibe.config['logging']['file'])
     
     use Warden::Manager do |manager|
       manager.scope_defaults :default,
@@ -44,8 +46,11 @@ module CallShibe
         env['warden'].authenticate(:access_token)
         error! "Invalid access_token" , 401 unless env['warden'].user
       end
-    end
 
+      def logger
+        @logger
+      end
+    end
 
     mount ::CallShibe::Callers
     mount ::CallShibe::Calls
