@@ -12,7 +12,7 @@ module CallShibe
 
         @call = ::Call.find_by(call_sid: params['CallSid'])
 
-        if call
+        if @call
           @call.add_action(
                            type: :digits,
                            digits: params['Digits']
@@ -30,6 +30,8 @@ module CallShibe
           
           response
 
+        else
+          get_reject_response
         end
       end
       

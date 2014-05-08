@@ -5,7 +5,7 @@ module CallShibe
     format :json
 
     attr_reader :logger
-    @logger = Logger.new(::CallShibe.config['logging']['file'])
+    @logger = Logger.new(::CallShibe.config['logging']['file'] || $STDOUT)
     
     use Warden::Manager do |manager|
       manager.scope_defaults :default,

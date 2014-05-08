@@ -11,8 +11,8 @@ module CallShibe
   Mongoid.load! File.join(self.root, 'config' , 'mongoid.yml')
 
   # Set up Mongoid/Moped logging
-  Mongoid.logger = Logger.new(::CallShibe.config['logging']['file'])
-  Moped.logger   = Logger.new(::CallShibe.config['logging']['file'])
+  Mongoid.logger = Logger.new(::CallShibe.config['logging']['file'] || $STDOUT)
+  Moped.logger   = Logger.new(::CallShibe.config['logging']['file'] || $STDOUT)
 
   if self.environment == 'development'
     Mongoid.logger.level = Logger::DEBUG

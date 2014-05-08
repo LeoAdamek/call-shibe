@@ -44,8 +44,8 @@ template: &template
     level: INFO
     
     # File may be any path (relative to where the application is started)
-    # Or $STDOUT / $STDERR for stdout / stderr.
-    file: $STDOUT
+    # Or `false` for STDOUT
+    file: false
       
     
 # Development environment.
@@ -53,10 +53,10 @@ development:
   <<: *template
   logging:
     level: DEBUG
-    file: $STDOUT
+    file: false
 
 test:
   <<: *template
   logging:
     level: DEBUG
-    file: $STDOUT
+    file: false
