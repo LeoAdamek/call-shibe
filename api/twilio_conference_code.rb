@@ -10,20 +10,20 @@ module CallShibe
       end
       get 'conference-code' do
 
-        @call = ::Call.find_by(call_sid: params['CallSid'])
+        call = ::Call.find_by(call_sid: params['CallSid'])
 
-        if @call
-          @call.add_action(
+        if call
+          call.add_action(
                            type: :digits,
                            digits: params['Digits']
                            )
                              
           
-          @room = ::ConferenceRoom.find_room_for_call(join_code: params['Digits'],
+          room = ::ConferenceRoom.find_room_for_call(join_code: params['Digits'],
                                                       inbound_number: params['To'])
           
-          if @room
-            response = get_join_response @room
+          if room
+            response = get_join_response(room)
           else
             response = get_reject_response
           end
@@ -39,6 +39,7 @@ module CallShibe
       # Get TwiML response for joining `room`.
       #
       # @param [ConferenceRoom] room
+      private
       def get_join_response(room)
         logger.info "Call joined room: #{room.name}"
 
@@ -56,6 +57,7 @@ module CallShibe
       # Get TwiML response for rejecting a code
       #
       #
+      private
       def get_reject_response
         logger.info "Join code rejected"
         
