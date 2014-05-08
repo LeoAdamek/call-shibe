@@ -6,10 +6,7 @@ module CallShibe
       params do
         requires 'Digits', type: String, desc: 'Entered Conference code'
         requires 'AccountSid' , type: String, desc: 'Twilio Account Sid, must match configured account.'
-        
-        if ::CallShibe.config['conference_rooms']['multi_number']
-          requires 'To' , type: String, desc: 'Number the call was made to'
-        end
+        requires 'To' , type: String, desc: 'Number the call was made to'
       end
       get 'conference-code' do
 
@@ -22,7 +19,7 @@ module CallShibe
                            )
                              
           
-          @room = ::ConferenceRoom.find_by(join_code: params['Digits'])
+          @room = ::ConferenceRoom.find_room_for_call(join_code: params['Digits'], inbound_number: params['To'])
           
           if @room
             response = Twilio::TwiML::Response.new do |r|
