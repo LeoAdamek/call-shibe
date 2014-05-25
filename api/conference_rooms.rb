@@ -1,4 +1,8 @@
 module CallShibe
+  ##
+  # Conference Room API Calls
+  #
+  # URL: /api/rooms
   class ConferenceRooms < Grape::API
     resource :rooms do
 

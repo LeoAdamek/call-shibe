@@ -49,20 +49,27 @@ module CallShibe
 
           if @caller.nil? || @caller.auto_join_room.nil?
 
-            r.Gather(numDigits: 4, action: '/api/twilio/conference-code', method: 'GET') do |code|
-              code.Say 'Please enter your four digit DOGE CODE. Then press the Hash key.'
+            r.Gather(
+                     numDigits: 4,
+                     action: '/api/twilio/conference-code',
+                     method: 'GET') do |code|
+
+              code.Say(
+                       'Please enter your four digit DOGE CODE. Then press the Hash key.'
+                       )
+
             end
 
           else
-            r.Say "You are being connected to the #{@caller.auto_join_room} conference"
+            r.Say (
+                   "You are being connected to the #{@caller.auto_join_room} conference"
+                   )
             r.Pause 1
             r.Dial do |dailing|
               dailing.Conference @caller.auto_join_room
             end
           end
-
         end
-
         response
       end
     end

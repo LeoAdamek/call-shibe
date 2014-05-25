@@ -1,8 +1,10 @@
 module CallShibe
   module Helpers
+    ##
+    # Helper methods for conference rooms
+    # 
+    # Generates templated TwiML responses to actions
     class ConferenceCodeHelper
-
-
       ##
       # Get TwiML response for joining `room`.
       #
@@ -21,7 +23,6 @@ module CallShibe
       ##
       # Get TwiML response for rejecting a code
       #
-      #
       def self.get_reject_response
         response = Twilio::TwiML::Response.new do |r|
           r.Say 'The conference code entered is invalid. Goodbye'
@@ -31,8 +32,6 @@ module CallShibe
 
         response
       end
-
-
     end
   end
 end
