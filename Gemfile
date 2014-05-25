@@ -18,7 +18,7 @@ gem 'twilio-ruby' , github: 'LeoAdamek/twilio-ruby'
 gem 'terminal-table'
 
 # Newrelic >= Love
-gem 'newrelic-grape'
+# gem 'newrelic-grape'
 
 group :development do
   gem 'guard'

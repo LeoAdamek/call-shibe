@@ -1,12 +1,7 @@
+# Rack Configuration File
+# Bootstraps Application for Rack
+
 require File.expand_path('../config/environment' , __FILE__)
-
-## Configure NewRelic
-if ENV['RACK_ENV'] == 'development'
-  require 'new_relic/rack/developer_mode'
-  use NewRelic::Rack::DeveloperMode
-end
-
-NewRelic::Agent.manual_start
 
 # Run the application
 run CallShibe::Application.instance
