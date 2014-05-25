@@ -5,14 +5,14 @@ module CallShibe
     use Warden::Manager do |manager|
       manager.scope_defaults :default,
       strategies: [:access_token]
-      
+
       manager.failure_app = self
     end
 
 
     # Access Token Strategy
     Warden::Strategies.add(:access_token) do
-      ## 
+      ##
       # Check validity of access token
       def valid?
         request.env["access_token"].is_a?(String)

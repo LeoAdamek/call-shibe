@@ -1,7 +1,8 @@
+require_relative 'helpers/conference_code_helper'
+
 module CallShibe
   module TwilioCallbacks
     class ConferenceCode < Grape::API
-      
       desc 'Twilio Call-back for checking a conference code'
       params do
         requires 'Digits', type: String, desc: 'Entered Conference code'
@@ -14,62 +15,25 @@ module CallShibe
 
         if call
           call.add_action(
-                           type: :digits,
-                           digits: params['Digits']
-                           )
-                             
-          
+                          type: :digits,
+                          digits: params['Digits']
+                          )
           room = ::ConferenceRoom.find_room_for_call(join_code: params['Digits'],
-                                                      inbound_number: params['To'])
+                                                     inbound_number: params['To'])
           
           if room
-            response = get_join_response(room)
+            response = ::CallShibe::Helpers::ConferenceCodeHelper.get_join_response(room)
           else
-            response = get_reject_response
+            response = ::CallShibe::Helpers::ConferenceCodeHelper.get_reject_response
           end
-          
+
           response
 
         else
-          get_reject_response
-        end
-      end
-      
-      ##
-      # Get TwiML response for joining `room`.
-      #
-      # @param [ConferenceRoom] room
-      private
-      def get_join_response(room)
-        logger.info "Call joined room: #{room.name}"
-
-        response = TwiML::Response.new do |r|
-          r.Say "Joining #{room.name} conference"
-          r.Dial do |dial|
-            dial.Conference room.join_options , room.name
-          end
+          ::CallShibe::Helpers::ConferenceCodeHelper.get_reject_response
         end
 
-        response
       end
-
-      ##
-      # Get TwiML response for rejecting a code
-      #
-      #
-      private
-      def get_reject_response
-        logger.info "Join code rejected"
-        
-        response = TwiML::Response.new do |r|
-          r.Say "The conference code entered is invalid. Goodbye"
-          r.Pause 1
-          r.Hangup
-        end
-
-        response
-      end
-
     end
   end
 end

@@ -1,16 +1,15 @@
 module CallShibe
   class API < Grape::API
-
     prefix 'api'
     format :json
 
     attr_reader :logger
     @logger = Logger.new(::CallShibe.config['logging']['file'] || $STDOUT)
-    
+
     use Warden::Manager do |manager|
       manager.scope_defaults :default,
-      strategies: [:access_token]
-      
+                             strategies: [:access_token]
+
       manager.failure_app = self
     end
 
@@ -20,10 +19,9 @@ module CallShibe
       BetterErrors.application_root = __dir__
     end
 
-
     # Access Token Strategy
     Warden::Strategies.add(:access_token) do
-      ## 
+      ##
       # Check validity of access token
       def valid?
         env['HTTP_AUTHORIZATION'].is_a?(String)
@@ -33,7 +31,7 @@ module CallShibe
       # Authenticate (if #valid? is true)
       def authenticate!
         @user = ::APIUser.authenticate(request.env['HTTP_AUTHORIZATION'])
-        
+
         @user ? true : false
       end
     end
@@ -43,16 +41,13 @@ module CallShibe
       # Authentication helper
       # Applied to all methods which require authentication
       def require_authentication!
-
         return true if ::CallShibe.environment == 'development'
 
         env['warden'].authenticate(:access_token)
-        error! "Invalid access_token" , 401 unless env['warden'].user
+        error! 'Invalid access_token' , 401 unless env['warden'].user
       end
 
-      def logger
-        @logger
-      end
+      attr_reader :logger
     end
 
     mount ::CallShibe::Callers
@@ -64,9 +59,7 @@ module CallShibe
 
     mount ::CallShibe::TwilioHooks
 
-
     # Add documentation via Swagger
     add_swagger_documentation mount_path: 'doc' , markdown: true , api_version: 'v1' , hide_documentation_path: true
-    
   end
 end

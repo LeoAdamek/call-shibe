@@ -5,9 +5,8 @@ module CallShibe
   # It does not test integration.
   #
   class Ping < Grape::API
-
     format :json
-    
+
     ##
     # Get a PING response, simply check that the app server is alive.
     # Does not test integration
@@ -17,8 +16,7 @@ module CallShibe
     #
     desc 'PING the API to check the app server is working'
     get '/ping' do
-      { :ping => :pong }
+      { ping: :pong }
     end
-
   end
-end 
+end

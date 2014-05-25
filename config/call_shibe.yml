@@ -16,7 +16,7 @@ template: &template
     # If enabled, the join code *and* incoming number are matched
     # This allows join codes to be recycled across different inbound numbers
     # If disabled, the inbound number is disabled, and join codes must be unique.
-    multi_number: true
+    multi_number: false
 
     # Default conference room options
     default_options:

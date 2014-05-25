@@ -1,7 +1,6 @@
 module CallShibe
   module TwilioCallbacks
     class CallStatus < Grape::API
-
       desc 'Twilio API Hook for call status'
       params do
         requires 'CallSid' , type: String , desc: 'Twilio Call SID'
@@ -12,17 +11,14 @@ module CallShibe
       get 'call-status' do
 
         validate_twilio_account!
-        
-        @call = ::Call.find_by(call_sid: ['CallSid'])
 
-        @call.duration_seconds = params['CallDuration']
-        @call.call_status = params['CallStatus']
+        call = ::Call.find_by(call_sid: params['CallSid'])
+        call.duration_seconds = params['CallDuration']
+        call.call_ended_at = Time.now
+        call.call_status = params['CallStatus']
 
-        @call.save!
-
-        {acknowledged: true}
+        { success: call.save }
       end
-
     end
   end
 end

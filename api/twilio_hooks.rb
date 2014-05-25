@@ -2,33 +2,31 @@ require_relative 'twilio_call_received'
 require_relative 'twilio_call_status'
 require_relative 'twilio_conference_code'
 
- module CallShibe
-   class TwilioHooks < Grape::API
+module CallShibe
+  class TwilioHooks < Grape::API
+    # Twilio Speaks XML. (TwiML)
+    format :xml
 
-     # Twilio Speaks XML. (TwiML)
-     format :xml
+    resource :twilio do
 
-     resource :twilio do
+      helpers do
+        def validate_twilio_account!
+          return true if ::CallShibe.environment.in?('development', 'test')
+          if params['AccountSid'] != ::CallShibe.twilio.account_sid
+            error! 'Invalid Account Sid', 403
+          end
+        end
+      end
 
-       helpers do
-         def validate_twilio_account!
-           return true if ::CallShibe.environment.in?('development','test')
-           if params['AccountSid'] != ::CallShibe.twilio.account_sid
-             error! 'Invalid Account Sid', 403
-           end
-         end
-       end
+      mount ::CallShibe::TwilioCallbacks::CallReceived
+      mount ::CallShibe::TwilioCallbacks::CallStatus
+      mount ::CallShibe::TwilioCallbacks::ConferenceCode
 
-       mount ::CallShibe::TwilioCallbacks::CallReceived
-       mount ::CallShibe::TwilioCallbacks::CallStatus
-       mount ::CallShibe::TwilioCallbacks::ConferenceCode
-       
-       desc 'Twilio API Hook for an SMS being recieved'
-       get 'sms-recieved' do
-         
-       end
-       
+      desc 'Twilio API Hook for an SMS being recieved'
+      get 'sms-recieved' do
 
-     end
-   end
- end
+      end
+
+    end
+  end
+end

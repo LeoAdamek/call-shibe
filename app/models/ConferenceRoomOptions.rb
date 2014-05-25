@@ -1,5 +1,4 @@
 class ConferenceRoomOptions
-
   include Mongoid::Document
 
   field :beep  , type: String
@@ -13,7 +12,7 @@ class ConferenceRoomOptions
 
   validates :beep , inclusion: { in: %w(true false onEnter onExit) }
 
-  validates :max_participents , numericality: { 
+  validates :max_participents , numericality: {
     only_integer: true,
     greater_than_or_equal_to: 1,
     less_than_or_equal_to: 40

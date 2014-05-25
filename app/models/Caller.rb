@@ -12,20 +12,18 @@ class Caller
   field :created_at , type: Time
   field :modified_at , type: Time
 
-  index :phone_number => 1
-  index :name => 1
+  index phone_number: 1
+  index name: 1
 
   validates :name,
-    presence: true,
-    uniqueness: true
+            presence: true,
+            uniqueness: true
 
   # Performs a basic E.164 format check
   validates :phone_number,
-    presence: true,
-    uniqueness: true,
-    format: {
-      with: /^\+\d{10,14}$/
-    }
-  
+            presence: true,
+            uniqueness: true,
+            format: {
+              with: /^\+\d{10,14}$/
+            }
 end
-

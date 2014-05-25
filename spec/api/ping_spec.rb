@@ -8,8 +8,8 @@ describe CallShibe::Ping do
   end
 
   it 'serves GET /api/ping and returns {"ping":"pong"}' do
-    get "/api/ping"
+    get '/api/ping'
     last_response.status.should eq 200
-    last_response.body.should eq( { ping: "pong"}.to_json )
+    last_response.body.should eq({ ping: 'pong' }.to_json)
   end
 end

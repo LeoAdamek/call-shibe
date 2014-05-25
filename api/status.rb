@@ -1,5 +1,5 @@
 module CallShibe
-  ## 
+  ##
   # Status API
   #
   # The status API checks the current status of the application
@@ -9,19 +9,17 @@ module CallShibe
   # If any value is +false+ then the application should be considered down/
   #
   class Status < Grape::API
-
     format :json
-    
+
     ##
     # Check System Status
     #
     desc 'Get the system status, tests all integrations'
     get '/status' do
       status = {}
-      
+
       # :have_life (always returns true)
       status[:have_life] = true
-
 
       # :have_db isn't really working yet...
       status[:have_db] = true
@@ -32,8 +30,7 @@ module CallShibe
 
       # Return status hash
       status
-      
-    end
 
+    end
   end
 end
