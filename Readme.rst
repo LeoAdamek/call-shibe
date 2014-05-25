@@ -4,7 +4,7 @@ Call Shibe
 
 *WOW*
 
-Simple, open-source, cloud-based telephone conferencing for businesses and clients.
+Simple, open-source, cloud-based VoIP & Telephonic conferencing for humans*
 
 -----
 About
@@ -12,6 +12,8 @@ About
 
 Call Shibe is a simple, but effective cloud-based telephone conferencing system.
 Aimed at businesses with close relationships with their clients, it has a number of features to help keep conferences effective.
+
+Call Shibe is provided as a stand-alone API, which can be mounted or integrated into another application.
 
 Features Included:
 ^^^^^^^^^^^^^^^^^^
@@ -42,7 +44,7 @@ Scheduled Conferences
  Requirements
 -----------------
 
-* Ruby (tested on ``2.0.0-p353``)
+* Ruby ( ``>= 1.9`` tested on ``2.0.0-p353`` , ``2.1.2``)
 * MongoDB
 * A Twilio Account
 
@@ -96,7 +98,7 @@ For security reasons API Token management is not available via the API, and is p
 ``rake user:enable[:name]``
     Enables the user ``:name`` -- Keeping the same acess key
 
-For any API calls which require authentication, supply the API token in the ``Authentication`` HTTP header.
+For any API calls which require authentication, supply the API token in the ``Authorization`` HTTP header.
 
 Creating a Known Caller
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -105,7 +107,7 @@ To create a new caller, just PUT them to ``/api/callers``.
 
 Here's an example ``curl`` command to do it.
 
-   curl -XPUT -dname="My Caller" -dphone_number="+441111222333" http://localhost/api/callers
+   curl -H "Authorization: MY_ACCESS_KEY" -XPUT -dname="My Caller" -dphone_number="+441111222333" http://localhost/api/callers
 
 It's important to set up the caller using an internationalized phone number, otherwise it won't be recognized when they call.
 If you want to have this caller automatically connected to a room, just supply the ``auto_join_room`` option.
@@ -131,7 +133,7 @@ A Room takes the following options:
 ``name`` *required* *unique*
     The name of the room. *must be unique*
 
-``join_code``
+``join_code`` *unique*
     A four digit code needed to join the room, if this is not supplied then the room can only be automatically joined.
     *must be unique or null*
 
@@ -148,3 +150,7 @@ A full API reference is available via Swagger.
 
 Please report bugs to the Github issues page.
 Submit pull requests for changes and fixes.
+
+
+*While Call Shibe has been designed for humans, it may also work for otherf primates.
+Not tested on animals.
