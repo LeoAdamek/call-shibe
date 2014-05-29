@@ -1,4 +1,3 @@
-
 module CallShibe
   ##
   # Callers interface for the CallShibe API
