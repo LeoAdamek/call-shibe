@@ -1,3 +1,7 @@
+..warning::
+  This version of call-shibe is deprecated in favour of a new version comming soon.
+  Stay tuned.
+
 ==========
 Call Shibe
 ==========
