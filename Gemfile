@@ -9,7 +9,9 @@ gem 'rack'
 gem 'warden'
 
 gem 'grape'
+
 gem 'grape-swagger'
+# gem 'redcarpet'
 
 gem 'mongoid' , '~>3.1.6'
 gem 'twilio-ruby' , github: 'LeoAdamek/twilio-ruby'
@@ -19,6 +21,8 @@ gem 'terminal-table'
 
 # Newrelic >= Love
 # gem 'newrelic-grape'
+
+gem 'settingslogic'
 
 group :development do
   gem 'guard'
@@ -33,7 +37,6 @@ group :development do
   gem 'pry'
   gem 'rake'
 end
-
 
 group :test do
   gem 'rspec'

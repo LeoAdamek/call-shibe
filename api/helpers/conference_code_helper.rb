@@ -32,6 +32,23 @@ module CallShibe
 
         response
       end
+
+      ##
+      # Transform Options for Response
+      #
+      # Transform the options hash from what we use
+      # in the app, to Twilio's Vendor specific layout
+      private
+      def transform_join_options(options)
+        {
+          beep: options[:beep].to_s,
+          muted: options[:muted].to_s,
+          waitUrl: '/api/twilio/wait-audio',
+          waitMethod: 'GET',
+          record: options[:record] ? 'record-from-start' : 'do-not-record',
+          tim: options[:trim] ? 'trim-silence' : 'do-not-trim'
+        }
+      end
     end
   end
 end

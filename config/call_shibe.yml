@@ -25,18 +25,19 @@ template: &template
       beep: true
 
       # Record conferences.
-      record: false
+      record: true
 
       # Trim silence from any recordings.
       trim_silence: true
 
       # Maximum users connected to a call
-      max_participents: 4
+      max_participents: 5
 
       # URL for hold music
       # Use null for default
       wait_audio: null
-      
+
+  welcome_message: Welcome to Call Shibe. Conferencing with WOW!
 
   # Logging Options
   logging:

@@ -60,6 +60,6 @@ module CallShibe
     mount ::CallShibe::TwilioHooks
 
     # Add documentation via Swagger
-    add_swagger_documentation mount_path: 'doc' , markdown: true , api_version: 'v1' , hide_documentation_path: true
+    add_swagger_documentation mount_path: 'doc' , markdown: false , api_version: 'v1' , hide_documentation_path: true
   end
 end

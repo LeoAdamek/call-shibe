@@ -38,7 +38,7 @@ module CallShibe
         response = Twilio::TwiML::Response.new do |r|
 
           if @caller.nil?
-            r.Say 'Hello, welcome to Call Shibe. WOW! Such Conference.'
+            r.Say ::CallShibe::Configuration.welcome_message
             @call[:from_number] = params['From']
             @call.save!
           else
