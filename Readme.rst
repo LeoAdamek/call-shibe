@@ -1,6 +1,6 @@
-..warning::
-  This version of call-shibe is deprecated in favour of a new version comming soon.
-  Stay tuned.
+.. warning:: This API is rather unstable, while it is being used in small-scale
+             production environments. It is recommended to wait until a stable version
+             is released before deploying it for mission-critical systems.
 
 ==========
 Call Shibe
