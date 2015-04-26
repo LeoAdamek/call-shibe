@@ -21,7 +21,6 @@ module CallShibe
       mount ::CallShibe::TwilioCallbacks::CallReceived
       mount ::CallShibe::TwilioCallbacks::CallStatus
       mount ::CallShibe::TwilioCallbacks::ConferenceCode
-      mount ::WaitAudio
 
       desc 'Twilio API Hook for an SMS being recieved'
       get 'sms-recieved' do
