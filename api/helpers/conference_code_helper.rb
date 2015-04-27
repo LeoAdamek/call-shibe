@@ -13,7 +13,7 @@ module CallShibe
         response = Twilio::TwiML::Response.new do |r|
           r.Say "Joining #{room.name} conference"
           r.Dial do |dial|
-            dial.Conference room.join_options , room.name
+            dial.Conference transform_join_options(room.join_options) , room.name
           end
         end
 

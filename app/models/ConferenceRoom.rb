@@ -14,7 +14,7 @@ class ConferenceRoom
   index join_code: 1
 
   def join_options
-    options = room_options || {}
+    options = {}
     options.merge! ::CallShibe.config['conference_rooms']['default_options']
   end
 
