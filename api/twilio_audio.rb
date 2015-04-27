@@ -1,4 +1,4 @@
-class WaitAudio < Grape::API
+class CallShibe::TwilioCallbacks::WaitAudio < Grape::API
 
   # Special Sauce.
   FRIDAY    = 5

@@ -1,6 +1,7 @@
 require_relative 'twilio_call_received'
 require_relative 'twilio_call_status'
 require_relative 'twilio_conference_code'
+require_relative 'twilio_audio'
 
 module CallShibe
   class TwilioHooks < Grape::API
@@ -18,7 +19,7 @@ module CallShibe
         end
       end
 
-      mount ::WaitAudio
+      mount ::CallShibe::TwilioCallbacks::WaitAudio
       mount ::CallShibe::TwilioCallbacks::CallReceived
       mount ::CallShibe::TwilioCallbacks::CallStatus
       mount ::CallShibe::TwilioCallbacks::ConferenceCode
