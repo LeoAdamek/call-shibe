@@ -4,7 +4,7 @@ class CallShibe::TwilioCallbacks::WaitAudio < Grape::API
   FRIDAY    = 5
   RB_FRIDAY = "http://call-shibe-assets.s3.amazonaws.com/wait-audio/friday.mp3"
 
-  DEFAULT_WAIT_AUDIO = "http://call-shibe-assets.s3.amazonaws.com/wait-audio/default.mp3"
+  DEFAULT_WAIT_AUDIO = "https://s3.amazonaws.com/call-shibe-assets/default.mp3"
   
   desc 'Twilio API Hook for getting the Wait Audio'
   get 'wait-audio' do
