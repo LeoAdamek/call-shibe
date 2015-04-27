@@ -18,7 +18,7 @@ module CallShibe
         end
       end
 
-      mount ::CallShibe::TwilioCallbacks::WaitAudio
+      mount ::WaitAudio
       mount ::CallShibe::TwilioCallbacks::CallReceived
       mount ::CallShibe::TwilioCallbacks::CallStatus
       mount ::CallShibe::TwilioCallbacks::ConferenceCode
