@@ -18,10 +18,11 @@ module CallShibe
         end
       end
 
+      mount ::CallShibe::TwilioCallbacks::WaitAudio
       mount ::CallShibe::TwilioCallbacks::CallReceived
       mount ::CallShibe::TwilioCallbacks::CallStatus
       mount ::CallShibe::TwilioCallbacks::ConferenceCode
-      mount ::CallShibe::TwilioCallbacks::WaitAudio
+
 
       desc 'Twilio API Hook for an SMS being recieved'
       get 'sms-recieved' do

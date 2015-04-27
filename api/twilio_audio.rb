@@ -20,5 +20,4 @@ class CallShibe::TwilioCallbacks::WaitAudio < Grape::API
       r.Play audio_url
     end
   end
-  
 end
