@@ -13,7 +13,7 @@ module CallShibe
         response = Twilio::TwiML::Response.new do |r|
           r.Say "Joining #{room.name} conference"
           r.Dial do |dial|
-            dial.Conference transform_join_options(room.join_options) , room.name
+            dial.Conference self.transform_join_options(room.join_options) , room.name
           end
         end
 
@@ -39,7 +39,7 @@ module CallShibe
       # Transform the options hash from what we use
       # in the app, to Twilio's Vendor specific layout
       private
-      def transform_join_options(options)
+      def self.transform_join_options(options)
         {
           beep: options[:beep].to_s,
           muted: options[:muted].to_s,
