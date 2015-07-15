@@ -66,5 +66,5 @@ test:
 production:
   <<: *template
   welcome_message:
-    Welcome to Mr Zen\'s Conferencing system.
+    Welcome to Mr Zen's Conferencing system.
     Powered by Call Shibe, conferencing with WOW!
