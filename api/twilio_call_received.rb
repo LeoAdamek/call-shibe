@@ -38,7 +38,7 @@ module CallShibe
         response = Twilio::TwiML::Response.new do |r|
 
           if @caller.nil?
-            r.Say ::CallShibe::Configuration.welcome_message
+            r.Say ::CallShibe::Configuration.i18n.welcome_message
             @call[:from_number] = params['From']
             @call.save!
           else
@@ -54,7 +54,7 @@ module CallShibe
                      action: '/api/twilio/conference-code',
                      method: 'GET') do |code|
 
-              code.Say ::CallShibe::Configuration.join_code_prompt
+              code.Say ::CallShibe::Configuration.i18n.join_code_prompt
 
             end
 

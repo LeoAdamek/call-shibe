@@ -5,13 +5,16 @@ class ConferenceRoom
         :key => :room_id
 
   field :name , :string
-  field :join_code , :string
-  field :inbound_number , :string
+  field :join_code , :string, unique: true, index: true
   field :beep  , :string
   field :wait_audio , :string
-  field :record , type: :boolean
-  field :max_participents , :integer
-  field :trim_silence , :boolean
+  field :record , :boolean, default: false
+  field :max_participents , :integer, default: 10
+  field :trim_silence , :boolean, default: true
+
+  if ::CallShibe::Configuration.conference_rooms.multi_number
+    field :inbound_number , :string
+  end
 
   validates :beep , inclusion: { in: %w(true false onEnter onExit) }
 
@@ -23,9 +26,18 @@ class ConferenceRoom
   validates :join_code , length: {is: 4}, presence: true
   validates :name , presence: true
 
+  ##
+  #
+  # Get the join options, merges the default options with the overrides
+  # for this room.
   def join_options
-    options = {}
-    options.merge! ::CallShibe::Configuration.conference_rooms.default_options
+    ::CallShibe::Configuration.conference_rooms.default_options.merge(
+                                                                   beep: beep,
+                                                                   trim_silence: trim_silence,
+                                                                   max_participents: max_participents,
+                                                                   record: record,
+                                                                   wait_audio: wait_audio
+    )
   end
 
   ##

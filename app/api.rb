@@ -14,7 +14,7 @@ module CallShibe
     end
 
     ## If in development, add better_errors
-    if ENV['RACK_ENV'] == 'development'
+    if CallShibe.environment == :development
       use BetterErrors::Middleware
       BetterErrors.application_root = __dir__
     end
@@ -22,13 +22,13 @@ module CallShibe
     # Access Token Strategy
     Warden::Strategies.add(:access_token) do
       ##
-      # Check validity of access token
+      # Check that the request can possibly be authorized
       def valid?
         env['HTTP_AUTHORIZATION'].is_a?(String)
       end
 
       ##
-      # Authenticate (if #valid? is true)
+      # Authenticate (if `#valid?` is true)
       def authenticate!
         @user = ::APIUser.authenticate(request.env['HTTP_AUTHORIZATION'])
 
@@ -41,7 +41,7 @@ module CallShibe
       # Authentication helper
       # Applied to all methods which require authentication
       def require_authentication!
-        return true if ::CallShibe.environment == 'development'
+        return true if ::CallShibe.environment == :development
 
         env['warden'].authenticate(:access_token)
         error! 'Invalid access_token' , 401 unless env['warden'].user

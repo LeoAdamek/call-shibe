@@ -10,7 +10,7 @@ class APIUser
   include Dynamoid::Document
 
   field :name , :string
-  field :access_token , :string , default: -> { create_access_token }
+  field :access_token , :string , default: -> { self.create_access_token }
 
   field :is_enabled , :boolean , default: true
 
@@ -24,7 +24,7 @@ class APIUser
   validates :access_token, presence: true
 
   ## Access Token Generation
-  def create_access_token
+  def self.create_access_token
     (0...32).map { ('a'..'z').to_a[rand(26)] }.join
   end
 
