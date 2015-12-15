@@ -20,8 +20,8 @@ class APIUser
   field :last_accessed_at , :datetime
 
   # Validations
-  validates :name , uniqueness: true, presence: true
-  validates :access_token , uniqueness: true, presence: true
+  validates :name, presence: true
+  validates :access_token, presence: true
 
   ## Access Token Generation
   def create_access_token

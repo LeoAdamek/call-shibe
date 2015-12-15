@@ -21,8 +21,7 @@ class Caller
   # Performs a basic E.164 format check
   validates :phone_number,
             presence: true,
-            uniqueness: true,
             format: {
-              with: /^\+\d{10,14}$/
+              with: /\A\+\d{10,14}\z/
             }
 end

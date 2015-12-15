@@ -6,7 +6,6 @@ module CallShibe
                               'config',
                               'call_shibe.yml')
 
-    namespace ::CallShibe.environment
-    
+    namespace CallShibe.environment.to_s
   end
-end  
+end

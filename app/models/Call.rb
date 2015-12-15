@@ -1,5 +1,7 @@
 class Call
 
+  include Dynamoid::Document
+
   table :name => :calls,
         :key => :call_id
 

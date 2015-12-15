@@ -1,4 +1,5 @@
 class ConferenceRoom
+  include Dynamoid::Document
 
   table :name => :conference_rooms,
         :key => :room_id
@@ -19,7 +20,7 @@ class ConferenceRoom
       greater_than_or_equal_to: 1,
       less_than_or_equal_to: 40
   }
-  validates :join_code , length: {is: 4}, presence: true, uniqueness: true
+  validates :join_code , length: {is: 4}, presence: true
   validates :name , presence: true
 
   def join_options

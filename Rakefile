@@ -18,12 +18,9 @@ RSpec::Core::RakeTask.new(:spec) do |spec|
 end
 
 task :environment do
-  ENV['RACK_ENV'] ||= 'development'
-  require File.expand_path('../config/environment', __FILE__)
+  ENV["RACK_ENV"] ||= 'development'
+  require File.expand_path('../config/application.rb', __FILE__)
 end
-
-require 'rubocop/rake_task'
-Rubocop::RakeTask.new(:rubocop)
 
 Dir[ File.expand_path('../tasks/*.rb' , __FILE__)].each { |f| require f }
 

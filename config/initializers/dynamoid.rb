@@ -12,6 +12,10 @@ module CallShibe
     if CallShibe.environment == :development
       config.endpoint = 'http://localhost:8000'
     end
+
+    Dir[File.join( File.expand_path('../../../app/models/', __FILE__), '*.rb')].each do |model|
+      require model
+    end
   end
 
 end

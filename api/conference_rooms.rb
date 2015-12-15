@@ -23,7 +23,7 @@ module CallShibe
                  type: String,
                  desc: 'Joining Code'
 
-        if ::CallShibe.config['conference_rooms']['multi_number']
+        if ::CallShibe::Configuration.conference_rooms.multi_number
           requires :inbound_number,
                    type: String,
                    desc: 'Number this call will come in to'
@@ -56,13 +56,11 @@ module CallShibe
         @room = ::ConferenceRoom.create(
                                         name: params[:name],
                                         join_code: params[:join_code],
-                                        room_options: {
-                                          beep: params[:beep],
-                                          wait_audio: params[:wait_audio],
-                                          record: params[:record],
-                                          max_participents: params[:max_participents],
-                                          trim_silence: params[:trim_silence]
-                                        }
+                                        beep: params[:beep],
+                                        wait_audio: params[:wait_audio],
+                                        record: params[:record],
+                                        max_participents: params[:max_participents],
+                                        trim_silence: params[:trim_silence]
                                         )
 
         { data: @room, saved: @room.save }
