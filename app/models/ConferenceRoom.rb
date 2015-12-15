@@ -1,17 +1,26 @@
 class ConferenceRoom
-  include Mongoid::Document
-  field :name , type: String
-  field :join_code , type: String
-  field :inbound_number , type: String
 
+  table :name => :conference_rooms,
+        :key => :room_id
+
+  field :name , :string
+  field :join_code , :string
+  field :inbound_number , :string
+  field :beep  , :string
+  field :wait_audio , :string
+  field :record , type: :boolean
+  field :max_participents , :integer
+  field :trim_silence , :boolean
+
+  validates :beep , inclusion: { in: %w(true false onEnter onExit) }
+
+  validates :max_participents , numericality: {
+      only_integer: true,
+      greater_than_or_equal_to: 1,
+      less_than_or_equal_to: 40
+  }
   validates :join_code , length: {is: 4}, presence: true, uniqueness: true
   validates :name , presence: true
-
-  # Need to make this optional!
-  embeds_one :room_options , class_name: 'ConferenceRoomOptions'
-
-  index name: 1
-  index join_code: 1
 
   def join_options
     options = {}

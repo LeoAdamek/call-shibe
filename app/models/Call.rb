@@ -1,18 +1,16 @@
 class Call
-  include Mongoid::Document
 
-  field :call_started_at , type: Time
-  field :call_ended_at   , type: Time
+  table :name => :calls,
+        :key => :call_id
 
-  field :call_sid , type: String
-
-  field :duration_seconds , type: Integer
-  field :room_name , type: String
-
-  field :call_status
-
-  field :created_at , type: Time , default: -> { Time.now }
-  
+  field :call_started_at , :datetime
+  field :call_ended_at   , :datetime
+  field :call_sid , :string
+  field :duration_seconds , :integer
+  field :room_name , :string
+  field :room_id , :string
+  field :created_at , :datetime, default: -> { Time.now }
+  field :actions, :serialized
 
   belongs_to :caller
 

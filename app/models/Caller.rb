@@ -1,23 +1,22 @@
 class Caller
-  include Mongoid::Document
+  include Dynamoid::Document
 
-  field :phone_number , type: String
+  table :name => :callers,
+        :key => :phone_number
 
-  field :name         , type: String
-  field :auto_join_room , type: String
+  field :phone_number , :string
+
+  field :name         , :string
+  field :auto_join_room_id , :integer
 
   # These fields not currently used.
-  field :minutes_called , type: Integer , default: 0
-  field :last_called_at , type: Time
-  field :created_at , type: Time
-  field :modified_at , type: Time
-
-  index phone_number: 1
-  index name: 1
+  field :minutes_called , :integer , default: 0
+  field :last_called_at , :datetime
+  field :created_at , :datetime
+  field :modified_at , :datetime
 
   validates :name,
-            presence: true,
-            uniqueness: true
+            presence: true
 
   # Performs a basic E.164 format check
   validates :phone_number,

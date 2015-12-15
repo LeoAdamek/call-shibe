@@ -7,17 +7,17 @@ This model controls access to the API.
 
 =end
 class APIUser
-  include Mongoid::Document
+  include Dynamoid::Document
 
-  field :name , type: String
-  field :access_token , type: String , default: -> { create_access_token }
+  field :name , :string
+  field :access_token , :string , default: -> { create_access_token }
 
-  field :is_enabled , type: Boolean , default: true
+  field :is_enabled , :boolean , default: true
 
-  field :created_at , type: Time , default: -> { Time.now }
-  field :modified_at , type: Time
+  field :created_at , :datetime , default: -> { Time.now }
+  field :modified_at , :datetime
 
-  field :last_accessed_at , type: Time
+  field :last_accessed_at , :datetime
 
   # Validations
   validates :name , uniqueness: true, presence: true

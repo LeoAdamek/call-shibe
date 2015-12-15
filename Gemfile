@@ -13,7 +13,9 @@ gem 'grape'
 gem 'grape-swagger'
 # gem 'redcarpet'
 
-gem 'mongoid' , '~>3.1.6'
+gem 'dynamoid'
+gem 'aws-sdk', '~>2.0'
+
 gem 'twilio-ruby' , github: 'LeoAdamek/twilio-ruby'
 
 # For Rake Tasks

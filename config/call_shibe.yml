@@ -8,7 +8,6 @@
 # (Basically the defaults which can be overridden nicely for environments
 #
 template: &template
-
   # Global Conference Room options & defaults
   conference_rooms:
     
@@ -47,8 +46,10 @@ template: &template
     # File may be any path (relative to where the application is started)
     # Or `false` for STDOUT
     file: false
-      
-    
+
+  dynamoid:
+    namespace: call_shibe
+
 # Development environment.
 development:
   <<: *template
@@ -65,9 +66,16 @@ test:
 # Production
 production:
   <<: *template
-  welcome_message:
-    Welcome to Mr Zen's Conferencing system.
-  join_code_prompt:
-    Please enter your four digit code. Then press the hash key.
-  wait_audio:
-   - http://s3.amazonaws.com/call-shibe-assets/default.mp3
+
+  i18n:
+    welcome_message:
+      Welcome to Mr Zen's Conferencing system.
+    join_code_prompt:
+      Please enter your four digit code. Then press the hash key.
+
+  conference_rooms:
+    wait_audio:
+     - http://s3.amazonaws.com/call-shibe-assets/default.mp3
+
+  dynamoid:
+    namespace: call_shibe_production

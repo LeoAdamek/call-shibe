@@ -10,7 +10,7 @@ module CallShibe
   end
 
   def self.environment
-    ENV['RACK_ENV'] || 'development'
+    (ENV['RACK_ENV'] || 'development').to_sym
   end
 
   # Load all the gems (:default and ENV)
