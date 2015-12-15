@@ -54,9 +54,7 @@ module CallShibe
                      action: '/api/twilio/conference-code',
                      method: 'GET') do |code|
 
-              code.Say(
-                       'Please enter your four digit DOGE CODE. Then press the Hash key.'
-                       )
+              code.Say ::CallShibe::Configuration.join_code_prompt
 
             end
 

@@ -67,4 +67,7 @@ production:
   <<: *template
   welcome_message:
     Welcome to Mr Zen's Conferencing system.
-    Powered by Call Shibe, conferencing with WOW!
+  join_code_prompt:
+    Please enter your four digit code. Then press the hash key.
+  wait_audio:
+   - http://s3.amazonaws.com/call-shibe-assets/default.mp3

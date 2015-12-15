@@ -15,7 +15,7 @@ class ConferenceRoom
 
   def join_options
     options = {}
-    options.merge! ::CallShibe.config['conference_rooms']['default_options']
+    options.merge! ::CallShibe::Configuration.conference_rooms.default_options
   end
 
   ##
@@ -23,7 +23,7 @@ class ConferenceRoom
   #
   # @param fields [Hash] Fields to search by
   def self.find_room_for_call(fields = {})
-    if ::CallShibe.config['conference_rooms']['multi_number']
+    if ::CallShibe::Configuration.conference_rooms.multi_number
       find_by(join_code: fields[:join_code], inbound_number: fields[:inbound_number])
     else
       find_by(join_code: find_by[:join_code])

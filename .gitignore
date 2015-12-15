@@ -2,5 +2,6 @@
 
 # Ignore gems in vendor
 vendor/
-Gemfile.lock
 log/
+.bundle/
+.idea/
