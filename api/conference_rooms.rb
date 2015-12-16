@@ -13,6 +13,18 @@ module CallShibe
         ::ConferenceRoom.all
       end
 
+      desc 'Get a room by ID'
+      params do
+        requires :id,
+                 type: String,
+                 desc: 'Room ID'
+      end
+      get '/:id' do
+        require_authentication!
+
+        ::ConferenceRoom.find(room_id: params[:id])
+      end
+
       desc 'Create a new conference room'
       params do
         requires :name,
@@ -75,7 +87,7 @@ module CallShibe
 
         @room = ::ConferenceRoom.find(id: params[:id])
 
-        { id: params[:id],
+        { room_id: params[:id],
           deleted: true }
       end
 
@@ -83,10 +95,10 @@ module CallShibe
       params do
         requires :name, type: String, desc: 'Room Name'
       end
-      get '/:name/calls' do
+      get '/:id/calls' do
         require_authentication!
 
-        ::Call.find_by(room_name: params[:id])
+        ::Call.find_by(room_id: params[:id])
       end
 
     end
